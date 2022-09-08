@@ -1,0 +1,5 @@
+spreadSheet:
+  urlOfNBA: ${URL_NBA}
+  urlOfSIAP: ${URL_SIAP}
+  urlOfCHALLENGER: ${URL_CHALLENGER}
+  urlOfSPE: ${URL_SPE}
