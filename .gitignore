@@ -34,4 +34,4 @@ build/
 
 *.xlsx
 
-./localhost-dev.env
+./src/main/resources/environments
