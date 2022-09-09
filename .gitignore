@@ -34,4 +34,4 @@ build/
 
 *.xlsx
 
-./src/main/resources/environments/
+src/main/resources/environments/
