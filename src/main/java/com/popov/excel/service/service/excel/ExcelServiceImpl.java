@@ -1,4 +1,4 @@
-package com.popov.excel.service.service;
+package com.popov.excel.service.service.excel;
 
 import com.popov.excel.service.properties.YAMLProperties;
 import lombok.RequiredArgsConstructor;
@@ -21,51 +21,19 @@ import java.io.FileOutputStream;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ExcelServiceImpl {
+public class ExcelServiceImpl implements ExcelService {
     private final YAMLProperties properties;
 
     private final String tableToParse = "table.waffle.no-grid tr";
-    private final String tableRowElement = "tr";
-    private final String cellOfRowElement = "tr";
+    private final String rowTableElement = "tr";
+    private final String cellOfRowElement = "td";
     private int numberOfCell = 0;
     private int numberOfRow = 0;
 
-    @SneakyThrows
-    public void getRows(Document doc, Sheet sheet) {
-        for (Element table : doc.select(tableToParse)) {
-            for (Element row : table.select(tableRowElement)) {
-                Elements tds = row.select(cellOfRowElement);
-                if (tds.size() > 6) {
 
-                    System.out.println(tds.get(0).text() + ":" + tds.get(1).text() + ":" + tds.get(2).text());
-                    tds.forEach(x -> setupSheets(x.text(), sheet));
-
-
-                }
-                numberOfCell = 0;
-                numberOfRow++;
-            }
-        }
-        numberOfRow = 0;
-    }
-
-    private void setupSheets(String value, Sheet sheet) {
-        Row row = sheet.getRow(numberOfRow);
-        Cell cell = row.createCell(numberOfCell);
-        cell.setCellValue(value);
-        numberOfCell++;
-        log.info("\nROW IS " + numberOfRow);
-        log.info("\nROW IS " + numberOfCell);
-    }
-
-    private void setupRows(Sheet sheet) {
-        for (int i = 0; i < 100; i++) {
-            sheet.createRow(i);
-        }
-
-    }
 
     @SneakyThrows
+    @Override
     public void init() {
         Document challenger = Jsoup.connect(properties.getSpreadSheet().getUrlOfCHALLENGER()).get();
         createWorkBook(challenger.select("span.name").text() + ".xlsx", challenger);
@@ -100,5 +68,39 @@ public class ExcelServiceImpl {
         getRows(document, sheet);
         workbook.write(outputStream);
         workbook.close();
+    }
+    @SneakyThrows
+    private void getRows(Document doc, Sheet sheet) {
+        for (Element table : doc.select(tableToParse)) {
+            for (Element row : table.select(rowTableElement)) {
+                Elements tds = row.select(cellOfRowElement);
+                if (tds.size() > 6) {
+
+                    System.out.println(tds.get(0).text() + ":" + tds.get(1).text() + ":" + tds.get(2).text());
+                    tds.forEach(x -> setupSheets(x.text(), sheet));
+
+
+                }
+                numberOfCell = 0;
+                numberOfRow++;
+            }
+        }
+        numberOfRow = 0;
+    }
+
+    private void setupSheets(String value, Sheet sheet) {
+        Row row = sheet.getRow(numberOfRow);
+        Cell cell = row.createCell(numberOfCell);
+        cell.setCellValue(value);
+        numberOfCell++;
+        log.info("\nROW IS " + numberOfRow);
+        log.info("\nROW IS " + numberOfCell);
+    }
+
+    private void setupRows(Sheet sheet) {
+        for (int i = 0; i < 100; i++) {
+            sheet.createRow(i);
+        }
+
     }
 }
