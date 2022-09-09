@@ -3,6 +3,8 @@ package com.popov.excel.service.properties.etc;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class SpreadSheet {
