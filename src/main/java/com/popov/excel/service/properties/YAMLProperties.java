@@ -17,4 +17,5 @@ import org.springframework.web.context.annotation.ApplicationScope;
 @ConfigurationProperties
 public class YAMLProperties {
     private SpreadSheet spreadSheet;
+    private MailStructure mailStructure;
 }
