@@ -1,0 +1,21 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+
+spreadSheet:
+  urlOfNBA: ${URL_NBA}
+  urlOfSIAP: ${URL_SIAP}
+  urlOfCHALLENGER: ${URL_CHALLENGER}
+  urlOfSPE: ${URL_SPE}
+
+mailStructure:
+  receiver: ${MAIL_RECEIVER}
+  sender: ${MAIL_USERNAME}
