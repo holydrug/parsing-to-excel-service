@@ -18,6 +18,8 @@
 1. ExcelService
 2. JavaMailSenderServiceImpl
 
+
+## STEP BY STEP IMAGE SHOWCASE ##
 ![1](images/1.%20needed-table-to-import.png)
 ![2](images/2.%20frontend-showcase.png)
 ![3](images/3.%20result-of-import.png)
