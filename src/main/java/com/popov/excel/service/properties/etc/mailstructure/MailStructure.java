@@ -1,4 +1,4 @@
-package com.popov.excel.service.properties.etc;
+package com.popov.excel.service.properties.etc.mailstructure;
 
 import lombok.Getter;
 import lombok.Setter;
