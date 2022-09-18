@@ -1,13 +1,14 @@
-package com.popov.excel.service.properties.etc;
+package com.popov.excel.service.properties.etc.common.structure;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class SpreadSheet {
+public class CommonStructure {
+    private String username;
+    private String password;
+    private String receiver;
     private String urlOfNBA;
     private String urlOfSIAP;
     private String urlOfCHALLENGER;
