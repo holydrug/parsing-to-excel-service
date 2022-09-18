@@ -4,6 +4,8 @@ import com.popov.excel.service.properties.YAMLProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -26,11 +28,13 @@ import java.util.stream.Stream;
 @Slf4j
 public class JavaMailSenderServiceImpl implements JavaMailSenderService {
 
-    private final JavaMailSender mailSender;
+    @Lazy
+    @Autowired
+    private JavaMailSender mailSender;
     private final YAMLProperties properties;
     private final String fileExtension = "xlsx";
 
-    private String title =  "exported excels tables %s";
+    private String title = "exported excels tables %s";
 
     @SneakyThrows
     @Override
@@ -46,13 +50,13 @@ public class JavaMailSenderServiceImpl implements JavaMailSenderService {
         List<String> files = findFiles(Paths.get("."), fileExtension);
 
         files.forEach(x -> {
-                    FileSystemResource fileSystemResource = new FileSystemResource(new File(x));
-                    try {
-                        mimeMessageHelper.addAttachment(fileSystemResource.getFilename(), fileSystemResource);
-                    } catch (MessagingException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+            FileSystemResource fileSystemResource = new FileSystemResource(new File(x));
+            try {
+                mimeMessageHelper.addAttachment(fileSystemResource.getFilename(), fileSystemResource);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
 
         mailSender.send(mimeMessage);

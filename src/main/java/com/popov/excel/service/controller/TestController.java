@@ -16,7 +16,7 @@ public class TestController {
     private final JavaMailSenderServiceImpl javaMailSenderService;
 
     @Scheduled(cron = "0 0 20 * * ?")
-    @RequestMapping
+    @RequestMapping(value = "/init")
     public void init() {
         excelService.init();
         javaMailSenderService.send();
