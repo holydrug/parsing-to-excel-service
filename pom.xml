@@ -20,6 +20,10 @@
 		<java.version>1.8</java.version>
 		<maven.cimpiler.source>1.8</maven.cimpiler.source>
 		<maven.cimpiler.target>1.8</maven.cimpiler.target>
+		<deploy.wildfly.host>127.0.0.1</deploy.wildfly.host>
+		<deploy.wildfly.port>9990</deploy.wildfly.port>
+		<deploy.wildfly.username>sample</deploy.wildfly.username>
+		<deploy.wildfly.password>serega12345</deploy.wildfly.password>
 	</properties>
 
 	<dependencies>
