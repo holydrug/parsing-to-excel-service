@@ -26,6 +26,8 @@
 		<deploy.wildfly.password>serega12345</deploy.wildfly.password>
 	</properties>
 
+	<packaging>war</packaging>
+
 	<dependencies>
 
 		<dependency>
