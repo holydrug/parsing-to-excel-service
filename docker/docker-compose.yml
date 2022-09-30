@@ -17,3 +17,11 @@ services:
       URL_SIAP: fixme
       URL_CHALLENGER: fixme
       URL_SPE: fixme
+
+  wildfly:
+    container_name: wildfly
+    image: quay.io/wildfly/wildfly
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
