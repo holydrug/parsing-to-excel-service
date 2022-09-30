@@ -18,6 +18,8 @@
 1. ExcelService
 2. JavaMailSenderServiceImpl
 
+*you should use feature/implement-wildfly branch if you need run it on wildfly
+
 
 ## STEP BY STEP IMAGE SHOWCASE ##
 ![1](images/1.%20needed-table-to-import.png)
